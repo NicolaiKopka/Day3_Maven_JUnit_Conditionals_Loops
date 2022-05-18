@@ -18,10 +18,10 @@ class ConditionalsTest {
     }
 
     @Test
-    void shouldReturnNullIfExactly30CustomersInStore() {
+    void shouldReturnHintIfExactly30CustomersInStore() {
         int numberOfCustomers = 30;
         String actualString = Conditionals.checkForTooManyCustomers(numberOfCustomers);
-        Assertions.assertNull(actualString);
+        Assertions.assertEquals("keine Personen mehr erlaubt", actualString);
     }
 
     @Test
@@ -42,28 +42,28 @@ class ConditionalsTest {
     void shouldReturnWarningIfNoPeopleIsEqualOrGreater30() {
         int numberOfCustomers = 30;
         String resultString = Conditionals.checkForTooManyCustomers("gelb", numberOfCustomers);
-        Assertions.assertEquals("keine Personen mehr erlaubt", resultString);
+        Assertions.assertEquals("Maximale Personenzahl nicht überschritten", resultString);
     }
 
     @Test
     void shouldReturnMessageIfNoPeopleIsLess30() {
         int numberOfCustomers = 29;
         String resultString = Conditionals.checkForTooManyCustomers("gelb", numberOfCustomers);
-        Assertions.assertEquals("Maximale Personenzahl nicht erreicht", resultString);
+        Assertions.assertEquals("Maximale Personenzahl nicht überschritten", resultString);
     }
 
     @Test
     void shouldReturnWarningIfNoPeopleIsEqualOrGreater60() {
         int numberOfCustomers = 60;
         String resultString = Conditionals.checkForTooManyCustomers("grün", numberOfCustomers);
-        Assertions.assertEquals("keine Personen mehr erlaubt", resultString);
+        Assertions.assertEquals("Maximale Personenzahl nicht überschritten", resultString);
     }
 
     @Test
     void shouldReturnMessageIfNoPeopleIsLess60() {
         int numberOfCustomers = 59;
         String resultString = Conditionals.checkForTooManyCustomers("grün", numberOfCustomers);
-        Assertions.assertEquals("Maximale Personenzahl nicht erreicht", resultString);
+        Assertions.assertEquals("Maximale Personenzahl nicht überschritten", resultString);
     }
 
     @Test

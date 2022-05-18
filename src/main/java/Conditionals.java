@@ -1,5 +1,8 @@
 public class Conditionals {
 
+    private static final String WARNING = "Zu viele Personen";
+    private static final String ALLOWED_MESSAGE = "Maximale Personenzahl nicht überschritten";
+
     public static void main(String[] args) {
         System.out.println(checkForTooManyCustomers(34));
     }
@@ -8,11 +11,11 @@ public class Conditionals {
         if (numberOfCustomers < 0) {
             return "Keine negativen Zahlen möglich";
         } else if (numberOfCustomers > 30) {
-            return "Zu viele Personen";
+            return getAlertMessage(numberOfCustomers, 30);
         } else if (numberOfCustomers == 30) {
-            return null;
+            return "keine Personen mehr erlaubt";
         } else {
-            return "Maximale Personenzahl nicht überschritten";
+            return getAlertMessage(numberOfCustomers, 30);
         }
     }
 
@@ -26,20 +29,22 @@ public class Conditionals {
             case "rot":
                 return "keine Personen erlaubt";
             case "gelb":
-                if (numberOfCustomers >= 30) {
-                    return "keine Personen mehr erlaubt";
-                } else {
-                    return "Maximale Personenzahl nicht erreicht";
-                }
+                return getAlertMessage(numberOfCustomers, 30);
             case "grün":
-                if (numberOfCustomers >= 60) {
-                    return "keine Personen mehr erlaubt";
-                } else {
-                    return "Maximale Personenzahl nicht erreicht";
-                }
+                return getAlertMessage(numberOfCustomers, 60);
             default:
                 return "keine valide Alarmstufe angegeben";
         }
+    }
+
+    private static String getAlertMessage(int numberOfCustomer, int maxNumberOfCustomers ) {
+
+        if(numberOfCustomer > maxNumberOfCustomers) {
+            return WARNING;
+        } else {
+            return ALLOWED_MESSAGE;
+        }
+
     }
 
 }
